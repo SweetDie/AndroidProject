@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,53 +20,58 @@
         android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/btnCreateCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:onClick="onClickCreateCategory"
         android:text="Додати"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameField"
+        android:id="@+id/tfCategoryName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
         android:hint="Назва"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addButton">
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateCategory">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCategoryName"
             android:layout_width="match_parent"
             android:textSize="20dp"
             android:layout_height="62dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/priorityField"
+        android:id="@+id/tfCategoryPriority"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
         android:hint="Пріоритет"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameField">
+        app:layout_constraintTop_toBottomOf="@id/tfCategoryName">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCategoryPriority"
             android:layout_width="match_parent"
             android:textSize="20dp"
             android:inputType="number"
@@ -68,18 +79,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descriptionField"
+        android:id="@+id/tfCategoryDescription"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
         android:hint="Опис"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/priorityField">
+        app:layout_constraintTop_toBottomOf="@id/tfCategoryPriority">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCategoryDescription"
             android:layout_width="match_parent"
             android:textSize="20dp"
             android:inputType="textMultiLine"
@@ -93,26 +106,27 @@
         android:visibility="gone"
         android:id="@+id/cropView" />
 
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:onClick="onClickSelectImage"
+        android:text="Обрати фото"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfCategoryDescription" />
+
     <ImageView
-        android:id="@+id/resultIv"
-        android:layout_width="250dp"
+        android:id="@+id/ivPreviewImage"
+        android:layout_width="150dp"
         android:layout_height="150dp"
         android:visibility="visible"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addImageButton" />
-
-    <Button
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Оберіть фото"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/descriptionField" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/btnSelectImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
