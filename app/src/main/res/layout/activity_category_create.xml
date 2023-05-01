@@ -1,132 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:fillViewport="true">
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".category.CategoryCreateActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Додати категорію"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <Button
-        android:id="@+id/btnCreateCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:onClick="onClickCreateCategory"
-        android:text="Додати"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfCategoryName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:hint="Назва"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateCategory">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtCategoryName"
-            android:layout_width="match_parent"
-            android:textSize="20dp"
-            android:layout_height="62dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfCategoryPriority"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:hint="Пріоритет"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tfCategoryName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtCategoryPriority"
-            android:layout_width="match_parent"
-            android:textSize="20dp"
-            android:inputType="number"
-            android:layout_height="62dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfCategoryDescription"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:hint="Опис"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tfCategoryPriority">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtCategoryDescription"
-            android:layout_width="match_parent"
-            android:textSize="20dp"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:layout_height="130dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.oginotihiro.cropview.CropView
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/cropView" />
+        tools:context=".category.CategoryCreateActivity">
 
-    <Button
-        android:id="@+id/btnSelectImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:onClick="onClickSelectImage"
-        android:text="Обрати фото"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tfCategoryDescription" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Додати категорію"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05" />
 
-    <ImageView
-        android:id="@+id/ivPreviewImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:visibility="visible"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSelectImage" />
+        <Button
+            android:id="@+id/btnCreateCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:onClick="onClickCreateCategory"
+            android:text="Додати"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfCategoryName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:hint="Назва"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateCategory">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:textSize="20dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfCategoryPriority"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:hint="Пріоритет"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfCategoryName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtCategoryPriority"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:inputType="number"
+                android:textSize="20dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfCategoryDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:hint="Опис"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfCategoryPriority">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtCategoryDescription"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:textSize="20dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.oginotihiro.cropview.CropView
+            android:id="@+id/cropView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:onClick="onClickSelectImage"
+            android:text="Обрати фото"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfCategoryDescription" />
+
+        <ImageView
+            android:id="@+id/ivPreviewImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSelectImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

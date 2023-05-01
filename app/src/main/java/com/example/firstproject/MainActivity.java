@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.firstproject.category.CategoriesAdapter;
 import com.example.firstproject.dto.category.CategoryItemDTO;
 import com.example.firstproject.service.CategoryNetwork;
+import com.example.firstproject.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
     }
 
     void requestServer() {
+        CommonUtils.showLoading();
         CategoryNetwork
                 .getInstance()
                 .getJsonApi()
@@ -54,11 +56,12 @@ public class MainActivity extends BaseActivity {
                         List<CategoryItemDTO> data = response.body();
                         adapter = new CategoriesAdapter(data);
                         recyclerView.setAdapter(adapter);
+                        CommonUtils.hideLoading();
                     }
 
                     @Override
                     public void onFailure(Call<List<CategoryItemDTO>> call, Throwable t) {
-
+                        CommonUtils.hideLoading();
                     }
                 });
     }
