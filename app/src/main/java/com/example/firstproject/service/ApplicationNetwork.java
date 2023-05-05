@@ -1,6 +1,7 @@
 package com.example.firstproject.service;
 
 import com.example.firstproject.constants.Urls;
+import com.example.firstproject.network.AccountApi;
 import com.example.firstproject.network.CategoriesApi;
 
 import java.util.concurrent.TimeUnit;
@@ -9,11 +10,11 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CategoryNetwork {
-    private static CategoryNetwork instance;
+public class ApplicationNetwork {
+    private static ApplicationNetwork instance;
     private Retrofit retrofit;
 
-    public CategoryNetwork() {
+    public ApplicationNetwork() {
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(20, TimeUnit.SECONDS)
@@ -26,14 +27,18 @@ public class CategoryNetwork {
                 .build();
     }
 
-    public static CategoryNetwork getInstance() {
-        if(instance == null) {
-            instance = new CategoryNetwork();
+    public static ApplicationNetwork getInstance() {
+        if (instance == null) {
+            instance = new ApplicationNetwork();
         }
         return instance;
     }
 
     public CategoriesApi getJsonApi() {
         return retrofit.create(CategoriesApi.class);
+    }
+
+    public AccountApi getAccountApi() {
+        return retrofit.create(AccountApi.class);
     }
 }

@@ -1,17 +1,20 @@
 package com.example.firstproject;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.firstproject.account.RegisterActivity;
 import com.example.firstproject.category.CategoriesAdapter;
+import com.example.firstproject.category.CategoryEditActivity;
 import com.example.firstproject.dto.category.CategoryItemDTO;
-import com.example.firstproject.service.CategoryNetwork;
+import com.example.firstproject.service.ApplicationNetwork;
 import com.example.firstproject.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import retrofit2.Response;
 public class MainActivity extends BaseActivity {
 
     CategoriesAdapter adapter;
-    RecyclerView recyclerView;
+    RecyclerView rc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +40,19 @@ public class MainActivity extends BaseActivity {
                 .apply(new RequestOptions().override(600))
                 .into(iv);
 
-        recyclerView = findViewById(R.id.rcvCategories);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(new CategoriesAdapter(new ArrayList<>()));
+        rc = findViewById(R.id.rcvCategories);
+        rc.setHasFixedSize(true);
+        rc.setLayoutManager(new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false));
+
+        rc.setAdapter(new CategoriesAdapter(new ArrayList<>(),
+                MainActivity.this::onClickDeleteItem,
+                MainActivity.this::onClickEditItem));
         requestServer();
     }
 
     void requestServer() {
         CommonUtils.showLoading();
-        CategoryNetwork
+        ApplicationNetwork
                 .getInstance()
                 .getJsonApi()
                 .list()
@@ -54,8 +60,10 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<List<CategoryItemDTO>> call, Response<List<CategoryItemDTO>> response) {
                         List<CategoryItemDTO> data = response.body();
-                        adapter = new CategoriesAdapter(data);
-                        recyclerView.setAdapter(adapter);
+                        adapter = new CategoriesAdapter(data,
+                                MainActivity.this::onClickDeleteItem,
+                                MainActivity.this::onClickEditItem);
+                        rc.setAdapter(adapter);
                         CommonUtils.hideLoading();
                     }
 
@@ -64,5 +72,33 @@ public class MainActivity extends BaseActivity {
                         CommonUtils.hideLoading();
                     }
                 });
+    }
+
+    private void onClickEditItem(CategoryItemDTO categoryItemDTO) {
+        Intent intent = new Intent(this, CategoryEditActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void onClickDeleteItem(CategoryItemDTO categoryItemDTO) {
+        CommonUtils.showLoading();
+        ApplicationNetwork.getInstance()
+                .getJsonApi()
+                .delete(categoryItemDTO.getId())
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        CommonUtils.hideLoading();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        CommonUtils.hideLoading();
+                    }
+                });
+        Toast.makeText(this, categoryItemDTO.getName() +" видалено", Toast.LENGTH_LONG).show();
     }
 }

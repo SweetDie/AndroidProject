@@ -17,10 +17,17 @@ import com.example.firstproject.dto.category.CategoryItemDTO;
 import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHolder> {
-    private List<CategoryItemDTO> categories;
 
-    public CategoriesAdapter(List<CategoryItemDTO> categories) {
+    private List<CategoryItemDTO> categories;
+    private final OnItemClickListener delCat;
+    private final OnItemClickListener editCat;
+
+    public CategoriesAdapter(List<CategoryItemDTO> categories,
+                             OnItemClickListener delCat,
+                             OnItemClickListener editCat) {
         this.categories = categories;
+        this.delCat = delCat;
+        this.editCat = editCat;
     }
 
     @NonNull
@@ -34,7 +41,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CategoryCardViewHolder holder, int position) {
-        if(categories != null && position < categories.size()) {
+        if (categories != null && position < categories.size()) {
             CategoryItemDTO item = categories.get(position);
             holder.getCategoryName().setText(item.getName());
             String url = Urls.BASE + item.getImage();
@@ -42,6 +49,19 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
                     .load(url)
                     .apply(new RequestOptions().override(600))
                     .into(holder.getCategoryImage());
+            holder.edit_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editCat.onItemClick(item);
+                }
+            });
+
+            holder.delete_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    delCat.onItemClick(item);
+                }
+            });
         }
     }
 

@@ -19,7 +19,7 @@ import com.example.firstproject.ChangeImageActivity;
 import com.example.firstproject.MainActivity;
 import com.example.firstproject.R;
 import com.example.firstproject.dto.category.CategoryCreateDTO;
-import com.example.firstproject.service.CategoryNetwork;
+import com.example.firstproject.service.ApplicationNetwork;
 import com.example.firstproject.utils.CommonUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -171,7 +171,7 @@ public class CategoryCreateActivity extends BaseActivity {
         model.setPriority(Integer.parseInt(txtCategoryPriority.getText().toString()));
         model.setImageBase64(uriGetBase64(uri));
         CommonUtils.showLoading();
-        CategoryNetwork.getInstance()
+        ApplicationNetwork.getInstance()
                 .getJsonApi()
                 .create(model)
                 .enqueue(new Callback<Void>() {
