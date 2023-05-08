@@ -1,6 +1,7 @@
 package com.example.firstproject.service;
 
 import com.example.firstproject.constants.Urls;
+import com.example.firstproject.interceptors.JWTInterceptor;
 import com.example.firstproject.network.AccountApi;
 import com.example.firstproject.network.CategoriesApi;
 
@@ -19,6 +20,7 @@ public class ApplicationNetwork {
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
+                .addInterceptor(new JWTInterceptor())
                 .build();
         retrofit = new Retrofit.Builder()
                 .client(httpClient)
