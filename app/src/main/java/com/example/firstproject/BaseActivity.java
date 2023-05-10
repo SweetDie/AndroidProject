@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.firstproject.account.LoginActivity;
 import com.example.firstproject.account.RegisterActivity;
+import com.example.firstproject.application.HomeApplication;
 import com.example.firstproject.category.CategoryCreateActivity;
 import com.example.firstproject.utils.CommonUtils;
 
@@ -22,6 +23,8 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+        menu.setGroupVisible(R.id.group_anonymous, !HomeApplication.getInstance().isAuth());
+        menu.setGroupVisible(R.id.group_auth, HomeApplication.getInstance().isAuth());
         return true;
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.firstproject.BaseActivity;
 import com.example.firstproject.MainActivity;
 import com.example.firstproject.R;
 import com.example.firstproject.application.HomeApplication;
@@ -21,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     TextInputLayout tfEmail;
     TextInputLayout tfPassword;
