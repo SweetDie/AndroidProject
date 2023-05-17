@@ -3,10 +3,14 @@ package com.example.firstproject.application;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.firstproject.security.JwtSecurityService;
+
+import java.io.UnsupportedEncodingException;
 
 public class HomeApplication extends Application implements JwtSecurityService {
     private static HomeApplication instance;
@@ -73,5 +77,23 @@ public class HomeApplication extends Application implements JwtSecurityService {
         if(getToken().equals(""))
             return false;
         return true;
+    }
+
+    @Override
+    public String decoded() {
+        String token = getToken();
+        try {
+            String[] split = token.split("\\.");
+            String header = getJson(split[0]);
+            String body = getJson(split[1]);
+            return body;
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
+
+    private String getJson(String strEncoded) throws UnsupportedEncodingException {
+        byte[] decodedBytes = Base64.decode(strEncoded, Base64.URL_SAFE);
+        return new String(decodedBytes, "UTF-8");
     }
 }

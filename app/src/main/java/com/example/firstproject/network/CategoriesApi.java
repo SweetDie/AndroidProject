@@ -1,5 +1,6 @@
 package com.example.firstproject.network;
 
+import com.example.firstproject.dto.account.ProfileDTO;
 import com.example.firstproject.dto.category.CategoryCreateDTO;
 import com.example.firstproject.dto.category.CategoryItemDTO;
 import com.example.firstproject.dto.category.CategoryUpdateDTO;

@@ -5,4 +5,5 @@ public interface JwtSecurityService {
     String getToken();
     void deleteToken();
     boolean isAuth();
+    String decoded();
 }
